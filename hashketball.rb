@@ -1,4 +1,5 @@
-# Write your code below game_hash
+require 'pry'
+
 def game_hash
   {
     home: {
@@ -136,7 +137,20 @@ def num_points_scored(player_name)
   end
 end
 
-# def big_shoe_rebounds(shoe)
-  game_hash.each { |player_name, shoe| puts player_name if shoe == game_hash.values.max }
-end
+ def big_shoe_rebounds(shoe)
+   biggest = 0 
+   rebounds = 0 
+   game_hash.each do |home_away, keys|
+     keys[:players].each do |player|
+       size = player[:shoe]
+       if size > biggest
+         biggest = size
+         rebounds = player[:rebounds]
+       end
+     end
+   end
+   rebounds
+ end
+ # game_hash.each { |player_name, shoe| puts player_name if shoe == game_hash.values.max }
+# end
 
