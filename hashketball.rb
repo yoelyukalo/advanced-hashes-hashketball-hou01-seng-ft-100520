@@ -126,4 +126,17 @@ def game_hash
   }
 end
 
-# Write code here
+def num_points_scored(player_name)
+  game_hash.each do |team, team_data|
+    team_data[:player_name].each do |player|
+      if player[:player_name] == player_name
+        return player[:points]
+      end
+    end
+  end
+end
+
+def big_shoe_rebounds(shoe)
+  game_hash.each { |player_name, shoe| puts player_name if shoe == game_hash.values.max }
+end
+
