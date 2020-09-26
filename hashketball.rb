@@ -136,7 +136,7 @@ def num_points_scored(player_name)
   end
 end
 
-def big_shoe_rebounds(shoe)
+# def big_shoe_rebounds(shoe)
   game_hash.each { |player_name, shoe| puts player_name if shoe == game_hash.values.max }
 end
 
