@@ -200,14 +200,13 @@ end
  end
  
 
- def player_stats(player_name)
-   playerdata = nil 
-   game_hash.collect do |team, stats|
-     stats[:players].collect do |player, data|
-       if player == player_name
-         playerdata = data
-       end
-     end
-   end
-playerdata
-end 
+
+def player_stats(player_n)
+  game_hash.each do |home_away, keys|
+    keys[:players].each do |player|
+      if player[:player_name] == player_n
+        return player.delete_if { |stat, value| [:player_name].include?(stat)}
+      end
+    end
+  end
+end
