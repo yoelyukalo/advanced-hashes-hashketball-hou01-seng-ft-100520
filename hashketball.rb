@@ -129,7 +129,7 @@ end
 
 def num_points_scored(player_name)
   game_hash.each do |team, team_data|
-    team_data[:player_name].each do |player|
+    team_data[:players].each do |player|
       if player[:player_name] == player_name
         return player[:points]
       end
@@ -137,11 +137,11 @@ def num_points_scored(player_name)
   end
 end
 
- def big_shoe_rebounds(shoe)
+ def big_shoe_rebounds
    biggest = 0 
-   rebounds = 0 
-   game_hash.each do |home_away, keys|
-     keys[:players].each do |player|
+   rebounds = 0
+   game_hash.each do |team, team_data|
+     team_data[:players].each do |player|
        size = player[:shoe]
        if size > biggest
          biggest = size
@@ -151,6 +151,59 @@ end
    end
    rebounds
  end
- # game_hash.each { |player_name, shoe| puts player_name if shoe == game_hash.values.max }
-# end
+ 
+ def shoe_size(player_name)
+   game_hash.each do |team, team_data|
+     team_data[:players].each do |player|
+       if player[:player_name] == player_name
+         return player[:shoe]
+       end
+     end
+   end
+ end
+ 
+ def team_colors(team_name)
+   game_hash.each do |team, team_data|
+       if team_data[:team_name] == team_name
+         return team_data[:colors]
+       end
+   end
+ end
+ 
+ def team_names
+   game_hash.map {|home_away, keys| keys[:team_name]}
+ end
 
+  def shoe_size(player_name)
+   game_hash.each do |team, team_data|
+     team_data[:players].each do |player|
+       if player[:player_name] == player_name
+         return player[:shoe]
+       end
+     end
+   end
+ end
+ 
+  def player_numbers(t_name)
+    new_arr = []
+   game_hash.each do |team, team_data|
+     if team_data[:team_name] == t_name
+          count = 0
+          while count < team_data[:players].length
+            new_arr << team_data[:players][count][:number]
+            count += 1
+        end
+     #end
+   end
+ end
+ new_arr
+ end
+ 
+ def player_stats(p_name)
+   game_hash.each do |team, team_data|
+     team_data[:players].has_value?(p_name) do |player_hash|
+       binding.pry
+       return player_hash
+     end
+   end
+ end
