@@ -200,14 +200,16 @@ end
  end
  
 
-def player_stats(player_n)
-  game_hash.each do |home_away, keys|
-    keys[:players].each do |player|
-      if player[:player_name] == player_n
-        return player.delete_if { 
-          |stat, value| [:player_name].include?(stat)
-          #binding.pry
-        }
+def player_stats(input)
+  game_hash.each do |team, team_info|
+    team_info.each do |key, value|
+      if key == :players
+        value.each do |player|
+          if input == player[:player_name]
+            player.delete(:player_name) # having player name inside the hash was a bad idea!
+            return player
+          end
+        end
       end
     end
   end
