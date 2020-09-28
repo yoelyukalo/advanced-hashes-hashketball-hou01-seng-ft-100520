@@ -199,15 +199,7 @@ end
  new_arr
  end
  
- def player_stats(p_name)
-   game_hash.each do |team, team_data|
-     team_data[:players].has_value?(p_name) do |player_hash|
-       binding.pry
-       return player_hash
-     end
-   end
- end
- 
+
  def player_stats(player_name)
    playerdata = nil 
    game_hash.collect do |team, stats|
