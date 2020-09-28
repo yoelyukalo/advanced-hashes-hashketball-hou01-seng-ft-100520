@@ -206,7 +206,7 @@ def player_stats(player_n)
       if player[:player_name] == player_n
         return player.delete_if { 
           |stat, value| [:player_name].include?(stat)
-          binding.pry
+          #binding.pry
         }
       end
     end
